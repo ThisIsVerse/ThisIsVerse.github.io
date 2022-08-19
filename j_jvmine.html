@@ -1,0 +1,142 @@
+<html>
+<head><title>RBL - JVMine V 1.02 - Java</title>
+<LINK REL=STYLESHEET TYPE='text/css' HREF='./css/rbl_1.css'>
+
+<SCRIPT language="JavaScript">
+<!--
+function newJVM() 
+   {
+    iM = document.cJVM.level.selectedIndex ;
+    
+    if (iM == 0) {
+	document.JMine.m_col    = 8 ;
+	document.JMine.m_ligne  = 8 ;
+	document.JMine.m_mine   = 10 ;
+    }
+    if (iM == 1) {
+	document.JMine.m_col    = 16 ;
+	document.JMine.m_ligne  = 16 ;
+	document.JMine.m_mine   = 40 ;
+    }
+    if (iM == 2) {
+	document.JMine.m_col    = 30 ;
+	document.JMine.m_ligne  = 16 ;
+	document.JMine.m_mine   = 99 ;
+    }
+
+    document.JMine.newGame( ) ;
+
+    return ;
+   }
+// --></SCRIPT>
+
+</head>
+
+<body bgcolor=#FFFFFF>
+
+
+<TABLE CELLPADDING=3 width="100%" BGCOLOR=4040A0>
+<TR>
+   <TH class="tit">
+	<FONT SIZE="+2" class="tit" COLOR=D0F0FF>Java JVMine V 1.02</FONT><BR>
+	<FONT SIZE="+1" class="tit" COLOR=D0F0FF>Demineur Java / MineSweeper</FONT>
+</TH></TR></TABLE>
+<BR>
+<CENTER>
+
+
+<TABLE BGCOLOR=D0F0FF><TR><TD>
+	<FONT SIZE=1>
+	[
+	<A HREF="j_tscrol.html" TARGET=donnee>tScroll</A> |
+	<A HREF="j_tonglet.html" TARGET=donnee>tOnglet</A> |
+	<A HREF="j_tliste.html" TARGET=donnee>tListe</A> |
+	<A HREF="j_tcaldate.html" TARGET=donnee>tCalDate</A> |
+	<A HREF="j_tbbar.html" TARGET=donnee>tBBar</A> |
+	<A HREF="j_tchart.html" TARGET=donnee>tChart</A> |
+	<A HREF="j_tfunction.html" TARGET=donnee>tFunction</A> |
+	<A HREF="j_jvmine.html" TARGET=donnee>Winmine</A> |
+	<A HREF="j_butto.html" TARGET=donnee>tButton</A> 
+	]
+	</FONT>
+</TD></TR></TABLE>
+<TABLE><TR><TD BGCOLOR=D0F0FF>
+	<FONT SIZE=1>
+	[ 
+	<A HREF="__applet.html" TARGET=donnee>Inscription</A> |
+	<A HREF="http://www.javaside.com/" TARGET=_top>Main Page</A>
+	]
+	</FONT>
+</TD></TR></TABLE>
+<BR>
+
+<P>
+<TABLE BORDER><TR><TD ALIGN=CENTER BGCOLOR=D0D0D0 class="n">
+
+<FORM NAME="cJVM">
+	<INPUT type="button" value="New Game" onclick="newJVM()">
+  	<SELECT NAME="level">              
+	   <OPTION VALUE="1">Debutant
+	   <OPTION VALUE="1">Moyen
+	   <OPTION VALUE="3" SELECTED>Expert
+	</SELECT>
+</FORM>
+
+<applet code=JVMine.class  width=450 height=300 ID="JMine" NAME="JMine">
+	<param name=cabbase 	value="./cab/jvmine.cab">
+	<param name=bImg 	value="./img/j">
+	<param name=bgcolor	value=12632256>
+	<param name=_nbmine 	value=10>
+	<param name=_nbcol  	value=8>
+	<param name=_nbligne	value=8>
+	<param name=fontsize	value=16>
+</applet>
+</TD></TR></TABLE>
+
+<P>
+<TABLE BORDER BGCOLOR=D0D0D0 CELLPADDING=10 class="b0">
+<TR><TH>HTML Source</TH></TR>
+<TR><TD>
+<PRE>
+&lt;applet code=JVMine.class width=450 height=300&gt;
+	&lt;param name=bImg value="img/j"&gt;
+	&lt;param name=bgcolor value=2222200&gt;
+	&lt;param name=nbmine value=10&gt;
+	&lt;param name=nbcol value=8&gt;
+	&lt;param name=nbligne value=8&gt;
+	&lt;param name=font value="Arial"&gt;
+	&lt;param name=fontsize value=14&gt;
+&lt;/applet&gt;
+</PRE>
+</TD></TR>
+<TR><TD ALIGN=CENTER>
+Download Class File (.zip) <A HREF="zip/java/jvmine.zip">jvmine.zip (14 Ko)</A><BR>
+Download Java  File (.java) <A HREF="zip/srcs/JVMine.java">JVMine.java (14 Ko)</A>
+</TD></TR>
+<TR><TD><CENTER>
+<TABLE BORDER CELLPADDING=3  class="b0">
+	<TR BGCOLOR=F0EFD0><TH>Param name</TH><TH>Type</TH><TH>Description</TH></TR>
+	<TR><TD>bImg</TD><TD>text</TD><TD>Image directory</TD></TR>
+	<TR><TD>bgcolor</TD><TD>integer</TD><TD>rrggbb info (0xFFFFFF)</TD></TR>
+	<TR><TD>nbmine</TD><TD>integer</TD><TD>Nb Mine (def 99)</TD></TR>
+	<TR><TD>nbcol</TD><TD>integer</TD><TD>Nb colone (def 30)</TD></TR>
+	<TR><TD>nbligne</TD><TD>integer</TD><TD>Nb ligne (def 16)</TD></TR>
+	<TR><TD>font</TD><TD>text</TD><TD>Font name (Arial)</TD></TR>
+	<TR><TD>fontsize</TD><TD>integer</TD><TD>Font size (14)</TD></TR>
+</TABLE>
+</CENTER>
+</TD></TR>
+</TABLE>
+
+
+<HR SIZE="3">
+<FONT SIZE=1> 
+<B> Copyright &copy 1996, <A HREF="mailto:rberthou@wanadoo.fr">R. BERTHOU.</A> Tous droits r&eacute;serv&eacute;s.</B><BR>
+<I>Derni&egrave;re modification le 29 Janvier 1999 07H45</I>
+</FONT>
+<BR>
+<A HREF=http://www.hit-parade.com/hp.asp?site=a1361 TARGET=_top><IMG SRC=http://loga.hit-parade.com/logohp1.gif?site=a1361 ALT="Hit-Parade" WIDTH=77 HEIGHT=15 BORDER=0></A> 
+</CENTER>
+
+</BODY>
+</HTML>
