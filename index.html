@@ -31,6 +31,20 @@
             z-index: 1;
         }
         
+        .camera-icon {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .camera-icon:hover {
+            transform: rotate(360deg);
+        }
+        
         .blink {
             animation: blink 1s infinite;
         }
@@ -352,6 +366,7 @@
             border: 2px outset #cccccc;
             padding: 10px;
             margin-bottom: 10px;
+            position: relative;
         }
         
         .post-header {
@@ -374,6 +389,50 @@
         
         .post-message {
             color: #00ff00;
+        }
+        
+        .delete-post {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff0000;
+            color: #ffff00;
+            border: 1px solid #ffff00;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .forum-post:hover .delete-post {
+            display: flex;
+        }
+        
+        .admin-login {
+            background: #330033;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px outset #cccccc;
+        }
+        
+        .admin-login input {
+            padding: 5px;
+            background: #cccccc;
+            border: 2px inset #cccccc;
+            margin-right: 10px;
+            font-family: 'Comic Sans MS', cursive;
+        }
+        
+        .admin-login button {
+            background: #cccccc;
+            border: 2px outset #cccccc;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive;
         }
         
         .visitor-counter {
@@ -416,6 +475,75 @@
             transform: scale(1.05);
         }
         
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .photo-frame {
+            background: #660066;
+            padding: 15px;
+            border: 8px solid #ffff00;
+            position: relative;
+            transform: rotate(2deg);
+            box-shadow: 10px 10px 0px #ff00ff;
+        }
+        
+        .photo-frame:nth-child(even) {
+            transform: rotate(-1deg);
+            border-color: #00ffff;
+            box-shadow: -10px 10px 0px #ff0000;
+        }
+        
+        .photo-frame:nth-child(3n) {
+            transform: rotate(1deg);
+            border-color: #ff00ff;
+            box-shadow: 10px -10px 0px #ffff00;
+        }
+        
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dotted #ffffff;
+            z-index: -1;
+        }
+        
+        .photo-img {
+            width: 100%;
+            height: 200px;
+            border: 2px solid #000000;
+            background: #000033;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .photo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #ffff00;
+            font-style: italic;
+        }
+        
         .image-modal {
             display: none;
             position: fixed;
@@ -423,45 +551,87 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            cursor: grab;
         }
         
         .image-modal.active {
             display: flex;
         }
         
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
+        .image-modal.grabbing {
+            cursor: grabbing;
         }
         
-        .modal-content img {
-            max-width: 100%;
-            max-height: 100%;
+        .modal-content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .modal-image-container {
+            position: relative;
+            transform-origin: center center;
+        }
+        
+        .modal-image-container img {
+            max-width: 90vw;
+            max-height: 90vh;
             border: 5px solid #ff00ff;
-            box-shadow: 0 0 20px #ffff00;
+            box-shadow: 0 0 30px #ffff00;
+            cursor: grab;
+        }
+        
+        .modal-image-container.grabbing img {
+            cursor: grabbing;
         }
         
         .close-modal {
             position: absolute;
-            top: -40px;
-            right: 0;
+            top: 20px;
+            right: 20px;
             background: #ff0000;
             color: #ffff00;
             border: 2px solid #ffff00;
             font-size: 24px;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             font-weight: bold;
+            z-index: 1001;
+        }
+        
+        .modal-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1001;
+        }
+        
+        .modal-controls button {
+            background: #cccccc;
+            border: 2px outset #cccccc;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive;
+            font-weight: bold;
+        }
+        
+        .modal-controls button:hover {
+            background: #ffff00;
+            border: 2px inset #cccccc;
         }
         
         .cursor-trail {
@@ -514,6 +684,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+            
             .marquee-content {
                 animation: marquee 20s linear infinite;
             }
@@ -525,11 +699,19 @@
             .star-trail {
                 font-size: 14px;
             }
+            
+            .camera-icon {
+                font-size: 24px;
+                top: 45px;
+                right: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="camera-icon" id="cameraIcon" title="Photography Portfolio">📸</div>
+
         <div class="marquee">
             <div class="marquee-content">
                 ★  WELCOME TO MY 90s STYLED WEBPAGE!  ★  CHECK OUT MY ART!  ★  POST A MESSAGE!  ★  LOOK AT MY PROJECTS! ★  ADD ME ON DISCORD!  ★  JOIN THE SERVER!  ★  !UNDER CONSTRUCTION!  ★
@@ -553,6 +735,7 @@
             <button class="tab-button" data-tab="projects">Projects</button>
             <button class="tab-button" data-tab="forum">Forums</button>
             <button class="tab-button" data-tab="gallery">Art Gallery</button>
+            <button class="tab-button" data-tab="photography" style="display:none;">Photography</button>
         </div>
 
         <div id="about" class="tab-content active">
@@ -598,6 +781,13 @@
         <div id="forum" class="tab-content">
             <h2>Community Forums</h2>
             <p>Welcome to my forums! Post a message using your nickname. Please be respectful!</p>
+            <p>Currently this doesn't actually work real time sadly, I'm still working on it. All messages are stored locally on your browser for now.</p>
+            
+            <div class="admin-login">
+                <input type="password" id="adminPassword" placeholder="Admin Password">
+                <button id="adminLogin">Admin Login</button>
+                <span id="adminStatus"></span>
+            </div>
             
             <div class="forum">
                 <h3>Post a Message</h3>
@@ -651,10 +841,96 @@
             <p>Will add more whenever I feel like it. :D</p>
         </div>
 
+        <div id="photography" class="tab-content">
+            <h2>Photography</h2>
+            <p class="blink">★ Check out my photos! ★</p>
+            
+            <div class="photo-gallery">
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo1.JPG">
+                        <img src="./img/photo1.JPG" alt="Harvest Moon">
+                    </div>
+                    <div class="photo-caption">Harvest Moon - Oct. 2025</div>
+                </div>
+                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo2.JPG">
+                        <img src="./img/photo2.JPG" alt="Butterfly">
+                    </div>
+                    <div class="photo-caption">Closeup of a butterfly - 2025</div>
+                </div>
+                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo3.JPG">
+                        <img src="./img/photo3.JPG" alt="?">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo4.JPG">
+                        <img src="./img/photo4.JPG" alt="?">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo5.JPG">
+                        <img src="./img/photo5.JPG" alt="?">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo6.JPG">
+                        <img src="./img/photo6.JPG" alt="?">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+                                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo7.JPG">
+                        <img src="./img/photo7.JPG" alt="Photo 7">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+                                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo8.JPG">
+                        <img src="./img/photo8.JPG" alt="Photo 8">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo9.JPG">
+                        <img src="./img/photo9.JPG" alt="Photo 9">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+                
+                <div class="photo-frame">
+                    <div class="photo-img" data-image="./img/photo10.JPG">
+                        <img src="./img/photo10.JPG" alt="Photo 10">
+                    </div>
+                    <div class="photo-caption">? - 2025</div>
+                </div>
+            </div>
+            
+            <p>All photos are taken by me. More to be added as I take them.</p>
+        </div>
+
         <div class="image-modal" id="imageModal">
             <div class="modal-content">
                 <span class="close-modal" id="closeModal">X</span>
-                <img id="modalImage" src="" alt="Enlarged artwork">
+                <div class="modal-image-container" id="modalImageContainer">
+                    <img id="modalImage" src="" alt="Enlarged image">
+                </div>
+                <div class="modal-controls">
+                    <button id="zoomIn">Zoom In</button>
+                    <button id="zoomOut">Zoom Out</button>
+                    <button id="resetZoom">Reset</button>
+                </div>
             </div>
         </div>
 
@@ -664,12 +940,33 @@
         </footer>
 
         <div class="visitor-counter">
-            Visits: <span id="visitorCount">000001</span>
+            Visitors: <span id="visitorCount">000001</span>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const ADMIN_PASSWORD = 'verseadmin';
+            
+            let isAdmin = false;
+            let posts = JSON.parse(localStorage.getItem('forumPosts')) || [{
+                nickname: "Verse",
+                message: "Welcome to my forums! Thanks for checkin out my website :).",
+                date: new Date().toLocaleString(),
+                id: Date.now().toString()
+            }];
+            
+            const cameraIcon = document.getElementById('cameraIcon');
+            const photographyTab = document.querySelector('[data-tab="photography"]');
+            
+            cameraIcon.addEventListener('click', function() {
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                photographyTab.classList.add('active');
+                document.getElementById('photography').classList.add('active');
+            });
+            
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
             
@@ -712,15 +1009,18 @@
             const forumPosts = document.getElementById('forumPosts');
             const postButton = document.getElementById('postButton');
             const cooldownMessage = document.getElementById('cooldownMessage');
-            
-            let posts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+            const adminLogin = document.getElementById('adminLogin');
+            const adminPassword = document.getElementById('adminPassword');
+            const adminStatus = document.getElementById('adminStatus');
             
             function displayPosts() {
-                while (forumPosts.children.length > 1) {
+                while (forumPosts.children.length > 0) {
                     forumPosts.removeChild(forumPosts.lastChild);
                 }
                 
-                posts.slice().reverse().forEach(post => {
+                const postsToShow = posts.slice().reverse();
+                
+                postsToShow.forEach(post => {
                     const postElement = document.createElement('div');
                     postElement.className = 'forum-post';
                     postElement.innerHTML = `
@@ -729,9 +1029,19 @@
                             <span class="post-date">${post.date}</span>
                         </div>
                         <div class="post-message">${post.message}</div>
+                        ${isAdmin ? `<div class="delete-post" data-id="${post.id}">X</div>` : ''}
                     `;
                     forumPosts.appendChild(postElement);
                 });
+                
+                if (isAdmin) {
+                    document.querySelectorAll('.delete-post').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const postId = this.getAttribute('data-id');
+                            deletePost(postId);
+                        });
+                    });
+                }
             }
             
             function checkCooldown() {
@@ -756,6 +1066,26 @@
             
             checkCooldown();
             
+            adminLogin.addEventListener('click', function() {
+                if (adminPassword.value === ADMIN_PASSWORD) {
+                    isAdmin = true;
+                    adminStatus.textContent = '✓ Admin Mode';
+                    adminStatus.style.color = '#00ff00';
+                    displayPosts();
+                } else {
+                    adminStatus.textContent = '✗ Wrong Password';
+                    adminStatus.style.color = '#ff0000';
+                }
+            });
+            
+            function deletePost(postId) {
+                if (!isAdmin) return;
+                
+                posts = posts.filter(post => post.id !== postId);
+                localStorage.setItem('forumPosts', JSON.stringify(posts));
+                displayPosts();
+            }
+            
             forumForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -769,11 +1099,11 @@
                 const newPost = {
                     nickname: nickname,
                     message: message,
-                    date: new Date().toLocaleString()
+                    date: new Date().toLocaleString(),
+                    id: Date.now().toString()
                 };
                 
                 posts.push(newPost);
-                
                 localStorage.setItem('forumPosts', JSON.stringify(posts));
                 localStorage.setItem('lastPostTime', new Date().getTime().toString());
                 
@@ -794,14 +1124,87 @@
             
             const imageModal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
+            const modalImageContainer = document.getElementById('modalImageContainer');
             const closeModal = document.getElementById('closeModal');
+            const zoomIn = document.getElementById('zoomIn');
+            const zoomOut = document.getElementById('zoomOut');
+            const resetZoom = document.getElementById('resetZoom');
             const artPieces = document.querySelectorAll('.art-piece');
+            const photoImgs = document.querySelectorAll('.photo-img');
+            
+            let currentScale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+            
+            function openImageModal(imageUrl) {
+                modalImage.src = imageUrl;
+                currentScale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateImageTransform();
+                imageModal.classList.add('active');
+            }
+            
+            function updateImageTransform() {
+                modalImageContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+            }
+            
+            function setupModalInteractions() {
+                modalImage.addEventListener('mousedown', startDrag);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', stopDrag);
+                
+                zoomIn.addEventListener('click', function() {
+                    currentScale *= 1.2;
+                    updateImageTransform();
+                });
+                
+                zoomOut.addEventListener('click', function() {
+                    currentScale /= 1.2;
+                    updateImageTransform();
+                });
+                
+                resetZoom.addEventListener('click', function() {
+                    currentScale = 1;
+                    translateX = 0;
+                    translateY = 0;
+                    updateImageTransform();
+                });
+            }
+            
+            function startDrag(e) {
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                imageModal.classList.add('grabbing');
+                modalImageContainer.classList.add('grabbing');
+            }
+            
+            function drag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateImageTransform();
+            }
+            
+            function stopDrag() {
+                isDragging = false;
+                imageModal.classList.remove('grabbing');
+                modalImageContainer.classList.remove('grabbing');
+            }
             
             artPieces.forEach(piece => {
                 piece.addEventListener('click', () => {
                     const imageUrl = piece.getAttribute('data-image');
-                    modalImage.src = imageUrl;
-                    imageModal.classList.add('active');
+                    openImageModal(imageUrl);
+                });
+            });
+            
+            photoImgs.forEach(img => {
+                img.addEventListener('click', () => {
+                    const imageUrl = img.getAttribute('data-image');
+                    openImageModal(imageUrl);
                 });
             });
             
@@ -814,6 +1217,8 @@
                     imageModal.classList.remove('active');
                 }
             });
+            
+            setupModalInteractions();
             
             const cursorTrails = [];
             const trailCount = 15;
