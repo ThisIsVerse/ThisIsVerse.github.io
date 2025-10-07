@@ -1,215 +1,962 @@
-<html>
-
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta property="og:title" content="Verse's Site">
-    <meta property="og:locale" content="nb_NO">
-    <meta name="description" content="Verse's Personal Website">
-    <meta property="og:description" content="Verse's Personal Website">
-    <link rel="canonical" href="https://thisisverse.github.io/index.html">
-    <meta property="og:url" content="https://thisisverse.github.io/index.html">
-    <meta property="og:site_name" content="Verse's Site">
-    <meta property="og:image" content="/embed.png">
-
-<title>
-	C:/Verse/Home/
-</title>
-<link rel="icon" href="images/v1.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verse's Webpage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: #000066;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23000066"/><circle cx="20" cy="20" r="5" fill="%23006699" opacity="0.3"/><circle cx="80" cy="40" r="8" fill="%23006699" opacity="0.3"/><circle cx="40" cy="80" r="6" fill="%23006699" opacity="0.3"/></svg>');
+            color: #00ff00;
+            padding: 20px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #000033;
+            border: 8px double #ff00ff;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #ff00ff;
+            color: #000033;
+            padding: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px dotted #ff00ff;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #ffff00;
+            text-shadow: 3px 3px 0 #ff0000;
+            margin-bottom: 10px;
+            font-family: 'Impact', sans-serif;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            color: #00ffff;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #0000ff;
+        }
+        
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid transparent;
+            border-radius: 10px;
+            background: linear-gradient(90deg, 
+                #ff0000, #ff3300, #ff6600, #ff9900, #ffcc00, #ffff00, #ccff00, #99ff00, #66ff00, #33ff00, #00ff00, #00ff33, #00ff66, #00ff99, #00ffcc, #00ffff, #00ccff, #0099ff, #0066ff, #0033ff, #0000ff, #3300ff, #6600ff, #9900ff, #cc00ff, #ff00ff, #ff00cc, #ff0099, #ff0066, #ff0033, #ff0000);
+            background-size: 3000% 100%;
+            animation: gradientRotate 20s linear infinite;
+            padding: 5px;
+        }
+        
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            background: #000033;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            background: #660066;
+            padding: 10px;
+            border: 3px outset #cccccc;
+        }
+        
+        .tab-button {
+            background: #cccccc;
+            border: 3px outset #cccccc;
+            color: #000033;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button:hover {
+            background: #ffff00;
+            border: 3px inset #cccccc;
+        }
+        
+        .tab-button.active {
+            background: #ffff00;
+            border: 3px inset #cccccc;
+            color: #ff0000;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #000033;
+            border: 3px inset #cccccc;
+            margin-bottom: 20px;
+            min-height: 300px;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h2 {
+            color: #ffff00;
+            text-shadow: 2px 2px 0 #ff0000;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 2px dotted #ff00ff;
+            padding-bottom: 5px;
+            font-family: 'Impact', sans-serif;
+        }
+        
+        h3 {
+            color: #ffff00;
+            margin-bottom: 10px;
+            font-family: 'Impact', sans-serif;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .skill-item {
+            background: #660066;
+            padding: 10px;
+            border: 2px outset #cccccc;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .project {
+            background: #330033;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px outset #cccccc;
+        }
+        
+        .project h3 {
+            color: #ffff00;
+            margin-bottom: 10px;
+            font-family: 'Impact', sans-serif;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-button {
+            display: inline-block;
+            background: #cccccc;
+            border: 3px outset #cccccc;
+            color: #000033;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .social-button:hover {
+            background: #ffff00;
+            border: 3px inset #cccccc;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 3px dotted #ff00ff;
+            color: #00ffff;
+            font-size: 0.9rem;
+        }
+        
+        .under-construction {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .construction-gif {
+            width: 88px;
+            height: 31px;
+            background: #ffff00;
+            color: #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: bold;
+            border: 2px solid #ff0000;
+        }
+        
+        .contact-info {
+            background: #330033;
+            padding: 15px;
+            margin-top: 20px;
+            border: 2px outset #cccccc;
+        }
+        
+        .forum {
+            background: #660066;
+            padding: 15px;
+            margin-top: 20px;
+            border: 3px outset #cccccc;
+        }
+        
+        .forum h3 {
+            color: #ffff00;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .forum-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .forum-form input, .forum-form textarea {
+            padding: 8px;
+            background: #cccccc;
+            border: 2px inset #cccccc;
+            font-family: 'Comic Sans MS', cursive;
+        }
+        
+        .forum-form button {
+            background: #cccccc;
+            border: 3px outset #cccccc;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive;
+        }
+        
+        .forum-form button:hover {
+            background: #ffff00;
+            border: 3px inset #cccccc;
+        }
+        
+        .forum-form button:disabled {
+            background: #999999;
+            color: #666666;
+            cursor: not-allowed;
+        }
+        
+        .cooldown-message {
+            color: #ff0000;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .forum-posts {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 2px inset #cccccc;
+            padding: 10px;
+            background: #330033;
+        }
+        
+        .forum-post {
+            background: #000033;
+            border: 2px outset #cccccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dotted #ff00ff;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .post-nickname {
+            color: #ffff00;
+            font-weight: bold;
+        }
+        
+        .post-date {
+            color: #00ffff;
+            font-size: 0.8rem;
+        }
+        
+        .post-message {
+            color: #00ff00;
+        }
+        
+        .visitor-counter {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #000033;
+            color: #00ff00;
+            border: 2px inset #cccccc;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .art-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .art-piece {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #660066;
+            border: 2px outset #cccccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .art-piece img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .art-piece:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            border: 5px solid #ff00ff;
+            box-shadow: 0 0 20px #ffff00;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: #ff0000;
+            color: #ffff00;
+            border: 2px solid #ffff00;
+            font-size: 24px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .cursor-trail {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        .falling-star {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 0;
+            text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+            filter: drop-shadow(0 0 8px #ffff00);
+        }
+        
+        .star-trail {
+            position: absolute;
+            font-size: 16px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.7;
+            filter: blur(1px);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-img-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .tab-button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .art-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .marquee-content {
+                animation: marquee 20s linear infinite;
+            }
+            
+            .falling-star {
+                font-size: 20px;
+            }
+            
+            .star-trail {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+<body>
+    <div class="container">
+        <div class="marquee">
+            <div class="marquee-content">
+                ★  WELCOME TO MY 90s STYLED WEBPAGE!  ★  CHECK OUT MY ART!  ★  POST A MESSAGE!  ★  LOOK AT MY PROJECTS! ★  ADD ME ON DISCORD!  ★  JOIN THE SERVER!  ★  !UNDER CONSTRUCTION!  ★
+            </div>
+        </div>
+        
+        <header>
+            <div class="profile-img-container">
+                <div class="profile-img">
+                    <img src="./img/homeicon.jpg" alt="Home Icon">
+                </div>
+            </div>
+            <h1>VERSE</h1>
+            <p class="tagline">Photographer • Retro Enthusiast • Guitarist</p>
+            <p>He/Him They/Them ★17 Hetero/Cis</p>
+        </header>
 
-<basefont face=lucida>
-<body bgcolor=#34338a link=#0050a0 vlink=#0050a0 alink=#000000 marginheight=0 marginwidth=0>
+        <div class="nav-tabs">
+            <button class="tab-button active" data-tab="about">About Me</button>
+            <button class="tab-button" data-tab="interests">Interests</button>
+            <button class="tab-button" data-tab="projects">Projects</button>
+            <button class="tab-button" data-tab="forum">Forums</button>
+            <button class="tab-button" data-tab="gallery">Art Gallery</button>
+        </div>
 
-<table width=100% border=0 cellspacing=0 cellpadding=0>
-	<tr>
-	<td bgcolor=#000000>
-		<table width=100% border=0 cellspacing=2 cellpadding=0>
-			<tr>
-			<td bgcolor=#9c473a>
-				<font color=#ffffff size=+4><b>
-				&nbsp;V&nbsp;
-				</b></font>
-			</td>
-			<td width=100% bgcolor=#8180ba>
-				<font size=+4><b>
-				&nbsp;erse
-				</b></font>
-			</td>
-			</tr>
-			<tr>
-			<td bgcolor=#000000 colspan=2>
-				<font color=#2b2b2b><small><b>
-				&nbsp;&nbsp;
-				<font color=#ffffff>home</font>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="archives.html"><font color=#c0c0c0>archives</font></a>
-				</b></small></font>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="games.html"><font color=#c0c0c0>games</font></a>
-				</b></small></font>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="axel.html"><font color=#c0c0c0>axel ;)</font></a>
-				</b></small></font>
-			</td>
-			</tr>
-		</table>
-	</td>
-	</tr>
-	<tr>
-	<td valign=top colspan=2>
+        <div id="about" class="tab-content active">
+            <h2>About Me</h2>
+            <p>Welcome to my 90s styled webpage! I'm Verse, a retro enthusiast who loves all things related to retro technology, especially the early days of the internet and video games.</p>
+            <p>When I'm not busy with school and/or life, you can find me playing video games, practicing guitar, listening to music, taking pictures, or chatting with friends on Discord.</p>
+            
+            <div class="contact-info">
+                <h3>Socials</h3>
+                <p>Check out my socials if you'd like to see what I'm up to or to chat about something!</p>
+                <p>Email: raccoon.opal627@passinbox.com</p>
+                <p>Discord: thisisverse</p>
+                <div class="social-links">
+                    <a href="https://discord.gg/Y9KWkNWucA" class="social-button">Discord Server</a>
+                    <a href="https://www.youtube.com/@versedrhyme41" class="social-button">YouTube</a>
+                    <a href="https://models.spriters-resource.com/profile/verse/" class="social-button">VGResource</a>
+                    <a href="https://open.spotify.com/user/31zturac3jkgn4f4fqr5lnrnmjum" class="social-button">Spotify</a>
+                </div>
+            </div>
+        </div>
 
-		<table width=100% border=0 cellspacing=4 cellpadding=0>
-			<tr>
-			<td width=100%>
+        <div id="interests" class="tab-content">
+            <h2>My Interests</h2>
+            <p>Here are some of the things I'm passionate about:</p>
+            <div class="skills-list">
+                <div class="skill-item">Music</div>
+                <div class="skill-item">Video Games</div>
+                <div class="skill-item">Retro Consoles</div>
+                <div class="skill-item">The Internet</div>
+                <div class="skill-item">Guitars</div>
+                <div class="skill-item">Studio Ghibli</div>
+            </div>
+        </div>
 
-				<table width=100% border=0 cellspacing=0 cellpadding=4>
-					<tr>
-					<td width=50% valign=top>
+        <div id="projects" class="tab-content">
+            <h2>My Projects</h2>
+            <div class="project">
+                <h3>Enchantments and Potions | Minecraft Texture Pack</h3>
+                <p>My work in progress Minecraft resource pack. https://www.planetminecraft.com/texture-pack/enchantments-and-potions/</p>
+            </div>
+        </div>
 
-					<table width=100% border=0 cellspacing=0 cellpadding=0>
-					<tr><td bgcolor=#000000>
+        <div id="forum" class="tab-content">
+            <h2>Community Forums</h2>
+            <p>Welcome to my forums! Post a message using your nickname. Please be respectful!</p>
+            
+            <div class="forum">
+                <h3>Post a Message</h3>
+                <form class="forum-form" id="forumForm">
+                    <input type="text" id="nickname" placeholder="Your Nickname" required maxlength="20">
+                    <textarea id="message" placeholder="Your message..." rows="4" required maxlength="500"></textarea>
+                    <button type="submit" id="postButton">Post Message</button>
+                </form>
+                <div class="cooldown-message" id="cooldownMessage"></div>
+            </div>
+            
+            <h3>Recent Posts</h3>
+            <div class="forum-posts" id="forumPosts">
+                <div class="forum-post">
+                    <div class="post-header">
+                        <span class="post-nickname">Verse</span>
+                        <span class="post-date">10/7/25, 1:03 AM</span>
+                    </div>
+                    <div class="post-message">
+                        Welcome to my forums! Thanks for checkin out my website :).
+                    </div>
+                </div>
+            </div>
+        </div>
 
-						<table width=100% border=0 cellspacing=2 cellpadding=2 cols=2>
-							<tr>
-							<td bgcolor=#9c473a nowrap>
-								<b><font color=#ffffff>
-									posts
-								</font></b>
-							</td>
-							<td bgcolor=#484848>&nbsp;
-								
-							</td>
-							</tr>
-							<tr>
-							<td colspan=2 bgcolor=#8180ba>
-								<b>hello world... :)</b>
-								<br>
-								<small>
-								&nbsp;&nbsp;
-								<font color=#2b2b2b>
-									8/18/2022 @ 10:19 pm est
-								</font>
-								<br>
-								Today I have created this site and made this post, but that's not all I've done today. I hooked up my old Windows XP to take a look of floppy disks I found in a basement of someplace. The owners of the building were moving so I was given the floppy disks and I have finally looked through them, the guy was a programmer. I found a bunch of old programs, one audio file, old websites, images, and even games such as a java port of minesweeper that I think this guy might've made. I think I might make a page on this site to archive files and such from these floppies, they'll be free obviously and I will try to research and give credit to the original developers of the applications and such.
-								</small>
-								<br><br>
-								<b>web update</b>
-								<br>
-								<small>
-								&nbsp;&nbsp;
-								<font color=#2b2b2b>
-									8/19/2022 @ 12:24 pm est
-								</font>
-								<br>
-								I am adding a page for archives and I might add a page just for my youtube channel or something else.
-								</small>
-								<br><br>
-								<b>archives</b>
-								<br>
-								<small>
-								&nbsp;&nbsp;
-								<font color=#2b2b2b>
-									8/19/2022 @ 12:28 am est
-								</font>
-								<br>
-								I am continuing to update this website and I'm adding more files to the archives page with live demos of them.
-								</small>
-								<br><br>
-								<b>the past few days</b>
-								<br>
-								<small>
-								&nbsp;&nbsp;
-								<font color=#2b2b2b>
-									9/9/2022 @ 6:28 pm est
-								</font>
-								<br>
-								Some things have happened, today was my third day of school. (I switched to online and it's honestly so much better.) Unfortunately the Queen of England just passed yesterday so now King Charles is the heir to the throne.
-								</small>
-							</td>
-						</table>
+        <div id="gallery" class="tab-content">
+            <h2>Art Gallery</h2>
+            <p>These are a little old but check them out. Click on any image to fullscreen.</p>
+            
+            <div class="art-gallery">
+                <div class="art-piece" data-image="./img/art1.png">
+                    <img src="./img/art1.png" alt="Artwork 1">
+                </div>
+                <div class="art-piece" data-image="./img/art2.png">
+                    <img src="./img/art2.png" alt="Artwork 2">
+                </div>
+                <div class="art-piece" data-image="./img/art3.png">
+                    <img src="./img/art3.png" alt="Artwork 3">
+                </div>
+                <div class="art-piece" data-image="./img/art4.png">
+                    <img src="./img/art4.png" alt="Artwork 4">
+                </div>
+                <div class="art-piece" data-image="https://placehold.co/400x400/006666/ffffff?text=Art+5">
+                    <img src="https://placehold.co/400x400/006666/ffffff?text=Art+5" alt="Artwork 5">
+                </div>
+                <div class="art-piece" data-image="https://placehold.co/400x400/666600/ffffff?text=Art+6">
+                    <img src="https://placehold.co/400x400/666600/ffffff?text=Art+6" alt="Artwork 6">
+                </div>
+            </div>
+            
+            <p>Will add more whenever I feel like it. :D</p>
+        </div>
 
-						</td></tr>
-					  </table>
+        <div class="image-modal" id="imageModal">
+            <div class="modal-content">
+                <span class="close-modal" id="closeModal">X</span>
+                <img id="modalImage" src="" alt="Enlarged artwork">
+            </div>
+        </div>
 
-					</td>
-					<td width=50% valign=top>
+        <footer>
+            <p>© 2025 Verse's Webpage | Best viewed with Netscape Navigator (Joke!) | Last updated: <span id="lastUpdated">10/31/1999</span></p>
+            <p class="blink">This webpage uses cutting edge HTML 3.2 technology!!1!</p>
+        </footer>
 
-						<table width=100% border=0 cellspacing=0 cellpadding=0>
-						<tr><td bgcolor=#000000>
+        <div class="visitor-counter">
+            Visits: <span id="visitorCount">000001</span>
+        </div>
+    </div>
 
-						<table width=100% border=0 cellspacing=2 cellpadding=2 cols=2>
-							<tr>
-							<td bgcolor=#9c473a nowrap>
-								<b><font color=#ffffff>
-									about myself
-								</font></b>
-							</td>
-							<td bgcolor=#484848>&nbsp;
-								
-							</td>
-							</tr>
-							<tr>
-							<td bgcolor=#8180ba colspan=2>
-								<table width=*% border=0 cellspacing=0 cellpadding=2>
-									<tr>
-									<td valign=top>
-										<small>Hello, my name is Verse and I live in the United States of America. My favorite food is tacos, specifically the ones you'd get at Taco Bell. My hobbies are gaming, making youtube videos, swimming, drone flying, I love taking walks, and I just love being outside in general. My favorite animal is cats, I have 2 cats, 2 ducks, a snapping turtle, I had a fish, I had a hamster although it was more my sisters and that was around 10 years ago. My favorite video games are The Legend of Dragoon, Wild Arms 2, Halo, Super Mario Galaxy, and I pratically love any game genre. I owned an NES, Ps2 Slim, and a PSP. I currently own an Nes Classic/Mini, Bootleg Sega Genesis, SNES, Ps1, N64, Ps2 PHAT, Xbox 360 E, Hardmodded PS3 2nd model, Softmodded Wii white, Xbox One S, and an OG Nintendo Switch. My laptops are DEll Inspirion made for Windows 2000 running Linux, MacOSX 2009, HP Stream white, an HP laptop that I forgot the name of has 8GB of RAM 1TB HDD Ryzen 5 VEGA Graphics and it's black. My desktop pcs are Gateway Windows XP, a bunch of different Windows 7s, and one I've built from older pcs which has Intel i3 ATI HIS Radeon HD 5450 with 1GB VRAM 1.5TB from multiple HDDs 2 disc drives and a floppy drive. Thank you for visiting my website.</small>
-									
-									</td>
-									</tr>
-								</table>
-							</td>
-						</table>
-
-						</td></tr>
-						</table>
-
-						<br>
-
-						<table width=100% border=0 cellspacing=0 cellpadding=0>
-						<tr><td bgcolor=#000000>
-
-						<table width=100% border=0 cellspacing=2 cellpadding=2 cols=2>
-							<tr>
-							<td bgcolor=#9c473a nowrap>
-								<b><font color=#ffffff>
-									links
-								</font></b>
-							</td>
-							<td bgcolor=#484848>&nbsp;
-								
-							</td>
-							</tr>
-							<tr>
-							<td bgcolor=#8180ba colspan=2>
-								<b><a href="https://www.youtube.com/channel/UCTuQfiTh9JcqKTRS6vNZgSg">youtube.com</a></b> - my youtube channel<br><br>
-								<b><a href="https://discord.gg/k7r5NxdPhj">discord.com</a></b> - my discord server<br><br>
-								<b><a href="https://github.com/BitMindLab/JDK-1.0.2">github.com</a></b> - JDK 1.0.2 is needed for many these applications to run<br><br>
-							</td>
-						</table>
-
-						</td></tr>
-						</table>
-
-					</td>
-					</tr>
-				</table>
-
-			</td>
-			<td>
-			</td>
-			</tr>
-		</table>
-
-	</td>
-	</tr>
-</table>
-
-<center>
-  <small>looks like you've reached the end 
-  </small> 
-</center>
-
-</body></html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    button.classList.add('active');
+                    
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            const allButtons = document.querySelectorAll('.tab-button, .social-button, .forum-form button');
+            allButtons.forEach(button => {
+                button.addEventListener('mousedown', () => {
+                    button.style.transform = 'translateY(2px)';
+                });
+                
+                button.addEventListener('mouseup', () => {
+                    button.style.transform = 'translateY(0)';
+                });
+                
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translateY(0)';
+                });
+            });
+            
+            let count = localStorage.getItem('visitorCount') || 1;
+            document.getElementById('visitorCount').textContent = String(count).padStart(6, '0');
+            localStorage.setItem('visitorCount', parseInt(count) + 1);
+            
+            const today = new Date();
+            const formattedDate = `${today.getMonth()+1}/${today.getDate()}/${today.getFullYear()}`;
+            document.getElementById('lastUpdated').textContent = formattedDate;
+            
+            const forumForm = document.getElementById('forumForm');
+            const forumPosts = document.getElementById('forumPosts');
+            const postButton = document.getElementById('postButton');
+            const cooldownMessage = document.getElementById('cooldownMessage');
+            
+            let posts = JSON.parse(localStorage.getItem('forumPosts')) || [];
+            
+            function displayPosts() {
+                while (forumPosts.children.length > 1) {
+                    forumPosts.removeChild(forumPosts.lastChild);
+                }
+                
+                posts.slice().reverse().forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'forum-post';
+                    postElement.innerHTML = `
+                        <div class="post-header">
+                            <span class="post-nickname">${post.nickname}</span>
+                            <span class="post-date">${post.date}</span>
+                        </div>
+                        <div class="post-message">${post.message}</div>
+                    `;
+                    forumPosts.appendChild(postElement);
+                });
+            }
+            
+            function checkCooldown() {
+                const lastPostTime = localStorage.getItem('lastPostTime');
+                if (lastPostTime) {
+                    const currentTime = new Date().getTime();
+                    const timeDiff = currentTime - parseInt(lastPostTime);
+                    const cooldownTime = 10 * 60 * 1000;
+                    
+                    if (timeDiff < cooldownTime) {
+                        const remainingTime = Math.ceil((cooldownTime - timeDiff) / 1000 / 60);
+                        cooldownMessage.textContent = `Please wait ${remainingTime} minute(s) before posting again.`;
+                        postButton.disabled = true;
+                        return true;
+                    }
+                }
+                
+                cooldownMessage.textContent = '';
+                postButton.disabled = false;
+                return false;
+            }
+            
+            checkCooldown();
+            
+            forumForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (checkCooldown()) {
+                    return;
+                }
+                
+                const nickname = document.getElementById('nickname').value;
+                const message = document.getElementById('message').value;
+                
+                const newPost = {
+                    nickname: nickname,
+                    message: message,
+                    date: new Date().toLocaleString()
+                };
+                
+                posts.push(newPost);
+                
+                localStorage.setItem('forumPosts', JSON.stringify(posts));
+                localStorage.setItem('lastPostTime', new Date().getTime().toString());
+                
+                displayPosts();
+                
+                forumForm.reset();
+                
+                checkCooldown();
+                
+                const cooldownInterval = setInterval(() => {
+                    if (!checkCooldown()) {
+                        clearInterval(cooldownInterval);
+                    }
+                }, 60000);
+            });
+            
+            displayPosts();
+            
+            const imageModal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeModal = document.getElementById('closeModal');
+            const artPieces = document.querySelectorAll('.art-piece');
+            
+            artPieces.forEach(piece => {
+                piece.addEventListener('click', () => {
+                    const imageUrl = piece.getAttribute('data-image');
+                    modalImage.src = imageUrl;
+                    imageModal.classList.add('active');
+                });
+            });
+            
+            closeModal.addEventListener('click', () => {
+                imageModal.classList.remove('active');
+            });
+            
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    imageModal.classList.remove('active');
+                }
+            });
+            
+            const cursorTrails = [];
+            const trailCount = 15;
+            
+            const colors = [
+                '#ff0000', '#ff00ff', '#ffff00', '#00ff00', '#00ffff', 
+                '#0000ff', '#ff6600', '#ff00cc', '#cc00ff', '#00ff99',
+                '#ff0099', '#99ff00', '#0099ff', '#ff9900', '#9900ff'
+            ];
+            
+            for (let i = 0; i < trailCount; i++) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.opacity = 0;
+                document.body.appendChild(trail);
+                cursorTrails.push(trail);
+            }
+            
+            let trailIndex = 0;
+            
+            document.addEventListener('mousemove', function(e) {
+                const trail = cursorTrails[trailIndex];
+                
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                trail.style.backgroundColor = randomColor;
+                
+                trail.style.left = e.pageX - 5 + 'px';
+                trail.style.top = e.pageY - 5 + 'px';
+                trail.style.opacity = 1;
+                
+                setTimeout(() => {
+                    trail.style.opacity = 0;
+                }, 500);
+                
+                trailIndex = (trailIndex + 1) % trailCount;
+            });
+            
+            const stars = [];
+            
+            function createFallingStar() {
+                const star = document.createElement('div');
+                star.className = 'falling-star';
+                star.textContent = '🌟';
+                
+                const startX = Math.random() * (window.innerWidth * 0.8) - (window.innerWidth * 0.4);
+                const startY = -30 - Math.random() * 50;
+                star.style.left = startX + 'px';
+                star.style.top = startY + 'px';
+                
+                document.body.appendChild(star);
+                
+                const speed = 2 + Math.random() * 3;
+                const horizontalSpeed = 1 + Math.random() * 2;
+                const rotationSpeed = 0.5 + Math.random() * 1.5;
+                const trailLength = 3 + Math.floor(Math.random() * 6);
+                
+                let rotation = 0;
+                let xPos = startX;
+                let yPos = startY;
+                let active = true;
+                
+                const trails = [];
+                for (let i = 0; i < trailLength; i++) {
+                    const trail = document.createElement('div');
+                    trail.className = 'star-trail';
+                    trail.textContent = '⭐';
+                    trail.style.left = startX + 'px';
+                    trail.style.top = startY + 'px';
+                    trail.style.opacity = (trailLength - i) / trailLength * 0.7;
+                    document.body.appendChild(trail);
+                    trails.push({
+                        element: trail,
+                        age: i,
+                        maxAge: trailLength
+                    });
+                }
+                
+                stars.push({
+                    element: star,
+                    x: xPos,
+                    y: yPos,
+                    speed: speed,
+                    horizontalSpeed: horizontalSpeed,
+                    rotation: rotation,
+                    rotationSpeed: rotationSpeed,
+                    active: active,
+                    trails: trails
+                });
+            }
+            
+            function updateStars() {
+                for (let i = stars.length - 1; i >= 0; i--) {
+                    const star = stars[i];
+                    
+                    if (!star.active) {
+                        star.element.remove();
+                        star.trails.forEach(trail => trail.element.remove());
+                        stars.splice(i, 1);
+                        continue;
+                    }
+                    
+                    star.y += star.speed;
+                    star.x += star.horizontalSpeed;
+                    star.rotation += star.rotationSpeed;
+                    
+                    star.element.style.top = star.y + 'px';
+                    star.element.style.left = star.x + 'px';
+                    star.element.style.transform = `rotate(${star.rotation}deg)`;
+                    
+                    star.trails.forEach((trail, index) => {
+                        trail.age++;
+                        if (trail.age >= trail.maxAge) {
+                            trail.element.remove();
+                            star.trails.splice(index, 1);
+                        } else {
+                            const trailY = star.y - (trail.age * 6);
+                            const trailX = star.x - (trail.age * 4);
+                            trail.element.style.top = trailY + 'px';
+                            trail.element.style.left = trailX + 'px';
+                            trail.element.style.opacity = ((trail.maxAge - trail.age) / trail.maxAge) * 0.7;
+                            trail.element.style.transform = `scale(${0.5 + (trail.age / trail.maxAge) * 0.5})`;
+                        }
+                    });
+                    
+                    if (star.y > window.innerHeight + 320 || star.x > window.innerWidth + 600) {
+                        star.active = false;
+                    }
+                }
+            }
+            
+            setInterval(() => {
+                if (Math.random() < 0.4) {
+                    createFallingStar();
+                }
+            }, 1850);
+            
+            function animate() {
+                updateStars();
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        });
+    </script>
+</body>
+</html>
